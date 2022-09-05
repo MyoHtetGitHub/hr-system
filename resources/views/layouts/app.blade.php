@@ -49,13 +49,10 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -73,14 +70,12 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -289,18 +284,12 @@
         <div class="header-menu">
             <div class="d-flex">
                 <div class="col-md-12 d-flex">
-                  <div class="col-md-2 d-flex justify-content-end">
-                    {{-- @if(request()->is('/')) --}}
-                     <a href="" id="show-sidebar"><i class="fas fa-bars"></i></a>
-                     {{-- @else
-                     <a href="#" id="back-btn"><i class="fas fa-chevron-left"></i></a> --}}
-                     {{-- @endif --}}
-                    </div>
                     <div class="col-md-6">
+                     <a href="" id="show-sidebar"><i class="fas fa-bars"></i></a>
+                     </div>
                         <div class="d-flex justify-content-center">
                         <h5>@yield('title')</h5>
                         <a href=""></a>
-                      </div>
                     </div>
                 </div>
             </div>
@@ -308,7 +297,7 @@
         {{-- content --}}
         <div class="py-4">
             <div class="d-flex justify-content-center">
-                <div class="col-md-9 margin-bott">
+                <div class="col-md-11 margin-bott page-content">
             @yield('content')
                 </div>
             </div>
