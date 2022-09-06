@@ -17,6 +17,7 @@
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Department Name</th>
+                        <th>Role</th>
                         <th  class="hidden">Is Present?</th> 
                         <th>Action</th>
                         <th class="no-search hidden">Updated</th>
@@ -43,6 +44,7 @@
             {data: 'phone', name:'phone'},
             { data: 'email', name: 'email'},
             { data: 'department_name', name: 'department_name'},
+            {data:'role',name:'role'},
             { data: 'is_present', name: 'is_present'},
             {data:'action',name:'action'},
             {data:'updated_at',name:'updated_at'}

@@ -37,6 +37,8 @@
      {{-- datatable responsive css --}}
 
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
+     {{-- select 2 --}}
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -356,6 +358,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- sweet alert1 --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- selct 2  --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     {{-- jquery markjs datalightlight --}}
      <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
@@ -432,6 +436,7 @@
             $.extend(true, $.fn.dataTable.defaults, {
               mark: true
            });
+            $('.check-custom').select2();
             });
     </script>
     {{-- <script>

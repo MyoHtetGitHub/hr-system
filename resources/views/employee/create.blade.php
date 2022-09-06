@@ -54,7 +54,7 @@
                     </div>
                     <div class="md-form mb-4">
                         <label>Role</label>
-                        <select name="roles[]" class="form-control">
+                        <select name="roles[]" class="form-control check-custom" multiple>
                          @foreach ($roles as $role)
                          <option value="{{$role->name}}">{{$role->name}}</option>
                          @endforeach

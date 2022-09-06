@@ -519,3 +519,6 @@ body {
 .permission-class {
   margin: 0 3px 0 3px;
 }
+.preview_img img {
+  width: 100px;
+}

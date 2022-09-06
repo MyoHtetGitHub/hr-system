@@ -54,6 +54,14 @@
                         </select>
                     </div>
                     <div class="md-form mb-4">
+                        <label>Role</label>
+                        <select name="roles[]" class="form-control check-custom" multiple>
+                         @foreach ($roles as $role)
+                         <option value="{{$role->name}}" @if (in_array($role->id, $old_role)) selected @endif>{{$role->name}}</option>
+                         @endforeach
+                        </select>
+                    </div>
+                    <div class="md-form mb-4">
                         <label>Date Of Join</label>
                         <input type="text" name="date_of_join" class="form-control date-of-join" value="{{$employee->date_of_join}}">
                     </div>

@@ -8,3 +8,6 @@
 
 ### jquery  datable search highlight
 - https://datatables.net/blog/2017-01-19
+
+### select2 libary for checkout multiple select
+- https://select2.org/getting-started/basic-usage

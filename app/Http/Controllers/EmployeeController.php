@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\User;
-use App\Department;
-use Yajra\Datatables\Datatables;
-use App\Http\Requests\StoreEmployee;
-use App\Http\Requests\UpdateEmployee;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use App\Department;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use Spatie\Permission\Models\Role;
+use App\Http\Requests\StoreEmployee;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateEmployee;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -29,6 +30,13 @@ class EmployeeController extends Controller
           $query->whereHas('department',function($q1) use ($keyword){
           $q1->where('title','like','%'.$keyword.'%');
           });
+       })
+       ->addColumn('role',function($each){
+        $output = "";
+        foreach($each->roles as $role){
+          $output .= '<span class="badge badge-pill badge-primary">'.$role->name.'</span>';
+        }
+        return $output;
        })
        ->editColumn('profile_img',function($each){
         return '<img src="'.$each->user_image_path().'" alt="profile-img" class="profile-thmp"/><p class="profile_name">'.$each->name.'</p>';
@@ -58,13 +66,14 @@ class EmployeeController extends Controller
 
           return '<div class="action-icon">'.$edit_icon  .$info_icon .$delete_icon .'</div>';
          })
-         ->rawColumns(['profile_img','is_present','action'])
+         ->rawColumns(['profile_img','role','is_present','action'])
          ->make(true);
     }
 
     public function create(){
         $departments = Department::orderBy('title')->get();
-        return view('employee.create',compact('departments'));
+        $roles = Role::all();
+        return view('employee.create',compact('departments','roles'));
     }
 
     public function store(StoreEmployee $request){
@@ -90,16 +99,23 @@ class EmployeeController extends Controller
      $employee->profile_img =$profile_img_name;
      $employee->is_present =$request->is_present;
      $employee->password =Hash::make($request->password);
-     $employee->save();
      
+     $employee->save();
+     //assign role to the user
+     $employee->syncRoles($request->roles); 
+   
+
       
      return redirect()->route('employee.index')->with('create','Sucessfully!');
     }
 
     public function edit($id){
      $employee = User::findOrFail($id);
+     //for old role for specific id
+     $old_role = $employee->roles->pluck('id')->toArray();
+     $roles = Role::all();
      $departments = Department::orderBy('title')->get();
-     return view('employee.edit',compact('employee','departments'));
+     return view('employee.edit',compact('employee','old_role','roles','departments'));
     }
     public function update ($id, UpdateEmployee $request){
       $employee = User::findOrFail($id);
@@ -130,6 +146,7 @@ class EmployeeController extends Controller
       $employee->profile_img =$profile_img_name;
       $employee->password =$request->password ? Hash::make($request->password): $employee->password ;
       $employee->update();
+      $employee->syncRoles($request->roles);
       return redirect()->route('employee.index')->with('update','Employee update is Sucessfully!');
     }
 
