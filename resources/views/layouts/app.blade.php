@@ -173,7 +173,7 @@
                       </div> --}}
                     </li>
                     <li class="sidebar-dropdown">
-                      <a href="#">
+                      <a href="{{url('role')}}">
                         <i class="far fa-gem"></i>
                         <span>Role</span>
                       </a>

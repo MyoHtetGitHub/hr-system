@@ -27,4 +27,7 @@ Route::middleware('auth')->group(function () {
     // for department route
     Route::resource('/department', 'DepartmentController');
     Route::get('/department/Datatables/getDatatableServerSide','DepartmentController@getDatatableServerside');
+    //for role
+    Route::resource('role', 'RoleController');
+    Route::get('/role/Datatables/getDatatableServerSide','RoleController@getDatatableServerside');
 });

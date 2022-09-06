@@ -12,12 +12,12 @@
                     <thead>
                         <th class="no-sort no-search"></th>
                         <th class="no-sort"></th>
-                        <th>Employee Id</th> 
+                        <th class="hidden">Employee Id</th> 
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Department Name</th>
-                        <th>Is Present?</th> 
+                        <th  class="hidden">Is Present?</th> 
                         <th>Action</th>
                         <th class="no-search hidden">Updated</th>
                     </thead>
