@@ -516,3 +516,6 @@ body {
   justify-content: center;
   align-items: center;
 }
+.permission-class {
+  margin: 0 3px 0 3px;
+}

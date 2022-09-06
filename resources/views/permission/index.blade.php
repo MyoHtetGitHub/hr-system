@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','Department')
+@section('title','Permission')
 @section('content')
 <div class="m-1">
-    <a href="{{route('role.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Role</a>
+    <a href="{{route('permission.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Permission</a>
 </div>
 <div class="col-md-12">
     <div class="row">
@@ -12,7 +12,6 @@
                     <thead>
                         {{-- <th class="no-sort no-search"></th> --}}
                         <th>Name</th>  
-                        <th>Permisssions</th>
                         <th>Action</th>
                         {{-- <th class="no-search hidden">Updated</th> --}}
                     </thead>
@@ -29,10 +28,9 @@
       var table =  $('.Datatable').DataTable({
             processing:true,
             serverSide:true,
-            ajax:'/role/Datatables/getDatatableServerSide',
+            ajax:'/permission/Datatables/getDatatableServerSide',
             columns:[
                 {data:'name',name:'name'},
-                {data:'permissions',name:'permissions'},
                 {data:'action',name:'action'}
             ]
         });
@@ -51,7 +49,7 @@
                 if (willDelete) {
                  $.ajax({
                 method: "DELETE",
-                url: `/role/${id}`,
+                url: `/permission/${id}`,
                 })
                 .done(function( res ) {
                     table.ajax.reload();

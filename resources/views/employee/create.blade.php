@@ -53,6 +53,14 @@
                         </select>
                     </div>
                     <div class="md-form mb-4">
+                        <label>Role</label>
+                        <select name="roles[]" class="form-control">
+                         @foreach ($roles as $role)
+                         <option value="{{$role->name}}">{{$role->name}}</option>
+                         @endforeach
+                        </select>
+                    </div>
+                    <div class="md-form mb-4">
                         <label>Date Of Join</label>
                         <input type="text" name="date_of_join" class="form-control date-of-join">
                     </div>

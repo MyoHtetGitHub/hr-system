@@ -198,9 +198,9 @@
                       </div>
                     </li>
                     <li class="sidebar-dropdown">
-                      <a href="#">
+                      <a href="{{url('permission')}}">
                         <i class="fa fa-chart-line"></i>
-                        <span>Charts</span>
+                        <span>Permission</span>
                       </a>
                       <div class="sidebar-submenu">
                         <ul>

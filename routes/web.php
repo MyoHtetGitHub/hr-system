@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,8 @@ Route::middleware('auth')->group(function () {
     //for role
     Route::resource('role', 'RoleController');
     Route::get('/role/Datatables/getDatatableServerSide','RoleController@getDatatableServerside');
+    //for permission
+    Route::resource('permission', 'PermissionController');
+    Route::get('/permission/Datatables/getDatatableServerSide','PermissionController@getDatatableServerside');
+
 });

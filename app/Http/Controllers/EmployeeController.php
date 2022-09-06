@@ -63,7 +63,7 @@ class EmployeeController extends Controller
     }
 
     public function create(){
-      $departments = Department::orderBy('title')->get();
+        $departments = Department::orderBy('title')->get();
         return view('employee.create',compact('departments'));
     }
 

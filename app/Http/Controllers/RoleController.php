@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRole;
-use Spatie\Permission\Models\Role;
 use Yajra\Datatables\Datatables;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 
 class RoleController extends Controller
@@ -26,8 +27,8 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view ('role.create');
+    {   $permissions = Permission::all();
+        return view ('role.create',compact('permissions'));
     }
 
     /**
@@ -37,9 +38,12 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRole $request)
-    {
+    {   
         $role = new Role();
         $role->name =$request->name;
+        //for role and permissions
+        $role->givePermissionTo($request->permissions);
+        //end
         $role->save();
         return redirect()->route('role.index')->with('create','Successfully!!!');
     }
@@ -63,7 +67,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {   $role = Role::findOrFail($id);
-        return view('role.edit',compact('role'));
+        $old_permissions = $role->permissions->pluck('id')->toArray();
+        $permissions = Permission::all();
+        return view('role.edit',compact('role','permissions','old_permissions'));
     }
 
     /**
@@ -77,6 +83,10 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
         $role->name = $request->name;
+        //delete old permission
+        $old_permissions = $role->permissions->pluck('name')->toArray();
+        $role->revokePermissionTo($old_permissions);
+        $role->givePermissionTo($request->permissions);
         $role->update();
         return redirect()->route('role.index')->with('update','Role update successfully!!');
     }
@@ -98,12 +108,19 @@ class RoleController extends Controller
       public function getDatatableServerside(Request $request){
         $role = Role::query();
        return Datatables::of($role)
+       ->addColumn('permissions',function($each){
+        $output = "";
+        foreach($each->permissions as $permission){
+         $output .= '<span class="badge badge-pill badge-primary permission-class">'.$permission->name.'</span>';
+        }
+        return $output;
+       })
        ->addColumn('action',function($each){
         $edit_icon ='<a href="'.route('role.edit', $each->id).'" class="text-warning" ><i class=" far fa-edit"></i></a>';
         $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class=" fas fa-trash"></i></a>';
         return '<div class="action-icon">'.$edit_icon .$delete_icon.'</div>';
        })
-       ->rawColumns(['action'])
+       ->rawColumns(['permissions','action'])
        ->make(true);
     }
 }
