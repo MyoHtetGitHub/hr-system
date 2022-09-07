@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Storage;
 class EmployeeController extends Controller
 {
     public function index(){
+      //server side route authentization
+      if(!auth()->user()->can('view_employee')){
+        abort(403, 'Unauthorized action.');
+       }
         return view('employee.index');
     }
 
@@ -60,9 +64,22 @@ class EmployeeController extends Controller
           return null;
          })
          ->addColumn('action',function($each){
-          $edit_icon='<a href="'.route('employee.edit',$each->id).'" class="text-warning"><i class=" far fa-edit"></i></a>';
-          $info_icon='<a href="'.route('employee.show',$each->id).'" class="text-primary"><i class=" fas fa-info-circle"></i></a>';
-          $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class=" fas fa-trash"></i></a>';
+          $edit_icon = "";
+          $info_icon ="";
+          $delete_icon = "";
+          //for server site authentization
+          if(auth()->user()->can('edit_employee')){
+            $edit_icon='<a href="'.route('employee.edit',$each->id).'" class="text-warning"><i class=" far fa-edit"></i></a>';
+          }
+                    //for server site authentization
+
+          if(auth()->user()->can('view_employee')){
+            $info_icon='<a href="'.route('employee.show',$each->id).'" class="text-primary"><i class=" fas fa-info-circle"></i></a>';
+          }
+          //for server site authentization
+          if(auth()->user()->can('delete_employee')){
+            $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class=" fas fa-trash"></i></a>';
+          }
 
           return '<div class="action-icon">'.$edit_icon  .$info_icon .$delete_icon .'</div>';
          })
@@ -71,12 +88,18 @@ class EmployeeController extends Controller
     }
 
     public function create(){
+      if(!auth()->user()->can('create_employee')){
+        abort(403, 'Unauthorized action.');
+       }
         $departments = Department::orderBy('title')->get();
         $roles = Role::all();
         return view('employee.create',compact('departments','roles'));
     }
 
     public function store(StoreEmployee $request){
+      if(!auth()->user()->can('create_employee')){
+        abort(403, 'Unauthorized action.');
+       }
       if($request->hasFile('profile_img')){
         $profile_img_name = null;
         // get file
@@ -110,6 +133,9 @@ class EmployeeController extends Controller
     }
 
     public function edit($id){
+      if(!auth()->user()->can('edit_employee')){
+        abort(403, 'Unauthorized action.');
+       }
      $employee = User::findOrFail($id);
      //for old role for specific id
      $old_role = $employee->roles->pluck('id')->toArray();
@@ -118,6 +144,9 @@ class EmployeeController extends Controller
      return view('employee.edit',compact('employee','old_role','roles','departments'));
     }
     public function update ($id, UpdateEmployee $request){
+      if(!auth()->user()->can('edit_employee')){
+        abort(403, 'Unauthorized action.');
+       }
       $employee = User::findOrFail($id);
       //get profile_img column from database
       $profile_img_name = $employee->profile_img;
@@ -157,6 +186,9 @@ class EmployeeController extends Controller
     }
 
     public function destroy($id){
+      if(!auth()->user()->can('delete_employee')){
+        abort(403, 'Unauthorized action.');
+       }
       $employee = User::findOrFail($id);
       $employee->delete();
       return "success";

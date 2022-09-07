@@ -525,3 +525,6 @@ body {
 .action-icon a {
   padding: 0 1px 0 1px;
 }
+.profile-img {
+  width: 100px;
+}

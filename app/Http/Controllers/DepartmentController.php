@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Department;
-use App\Http\Requests\UpdateDepartment;
-use App\Http\Requests\StoreDepartment;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use Illuminate\Routing\Controller;
+use App\Http\Requests\StoreDepartment;
+use App\Http\Requests\UpdateDepartment;
 
 
 class DepartmentController extends Controller
@@ -17,7 +18,10 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  //server side route authentization
+        if(!auth()->user()->can('view_department')){
+            abort(403, 'Unauthorized action.');
+        }
         return view('department.index');
     }
 
@@ -27,7 +31,10 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        if(!auth()->user()->can('create_department')){
+        abort(403, 'Unauthorized action.');
+         }
         return view('department.create');
     }
 
@@ -38,7 +45,10 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreDepartment $request)
-    {
+    {  
+        if(!auth()->user()->can('create_department')){
+        abort(403, 'Unauthorized action.');
+        }
         $department = new Department();
         $department->title=$request->title;
         $department->save();
@@ -51,9 +61,8 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+       //
     }
 
     /**
@@ -62,8 +71,10 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){  
+         if(!auth()->user()->can('edit_department')){
+        abort(403, 'Unauthorized action.');
+    }
         $department = Department::findOrFail($id);
         return view('department.edit',compact('department'));
     }
@@ -76,7 +87,10 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateDepartment $request, $id)
-    {
+    {   
+           if(!auth()->user()->can('edit_department')){
+            abort(403, 'Unauthorized action.');
+            }
        $department= Department::findOrFail($id);
        $department->title=$request->title;
        $department->update();
@@ -90,7 +104,10 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        if(!auth()->user()->can('delete_department')){
+        abort(403, 'Unauthorized action.');
+        }
         $department = Department::findOrFail($id);
         $department->delete();
         return "success";
@@ -100,8 +117,14 @@ class DepartmentController extends Controller
         $department = Department::query();
        return Datatables::of($department)
        ->addColumn('action',function($each){
-        $edit_icon ='<a href="'.route('department.edit', $each->id).'" class="text-warning" ><i class=" far fa-edit"></i></a>';
-        $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class=" fas fa-trash"></i></a>';
+        $edit_icon = "";
+        $delete_icon = "";
+        if(auth()->user()->can('edit_department')){
+            $edit_icon ='<a href="'.route('department.edit', $each->id).'" class="text-warning" ><i class=" far fa-edit"></i></a>';
+        }
+        if(auth()->user()->can('delete_department')){
+            $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class=" fas fa-trash"></i></a>';
+        }
         return '<div class="action-icon">'.$edit_icon .$delete_icon.'</div>';
        })
        ->rawColumns(['action'])
