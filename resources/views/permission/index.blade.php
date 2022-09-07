@@ -2,7 +2,9 @@
 @section('title','Permission')
 @section('content')
 <div class="m-1">
+    @can('create_permission')
     <a href="{{route('permission.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Permission</a>
+     @endcan
 </div>
 <div class="col-md-12">
     <div class="row">

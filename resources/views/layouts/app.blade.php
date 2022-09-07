@@ -128,99 +128,44 @@
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                   <ul>
-                    {{-- <li class="header-menu">
-                      <span>General</span>
-                    </li> --}}
+                    <li class="sidebar-dropdown">
+                      <a href="{{url('/')}}">
+                        <i class="fa fa-tachometer-alt"></i>
+                        <span>Home</span>
+                      </a>
+                    </li>
+                    @can('view_employee')
                     <li class="sidebar-dropdown">
                       <a href="{{url('employee')}}">
                         <i class="fa fa-tachometer-alt"></i>
                         <span>Employee</span>
                       </a>
-                      {{-- <div class="sidebar-submenu">
-                        <ul>
-                          <li>
-                            <a href="#">Dashboard 1
-                              <span class="badge badge-pill badge-success">Pro</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">Dashboard 2</a>
-                          </li>
-                          <li>
-                            <a href="#">Dashboard 3</a>
-                          </li>
-                        </ul>
-                      </div> --}}
                     </li>
+                    @endcan
+                    @can('view_department')
                     <li class="sidebar-dropdown">
                       <a href="{{url('department')}}">
                         <i class="fa fa-shopping-cart"></i>
                         <span>Department</span>
-                        {{-- <span class="badge badge-pill badge-danger">3</span> --}}
                       </a>
-                      {{-- <div class="sidebar-submenu">
-                        <ul>
-                          <li>
-                            <a href="#">Products
-          
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">Orders</a>
-                          </li>
-                          <li>
-                            <a href="#">Credit cart</a>
-                          </li>
-                        </ul>
-                      </div> --}}
                     </li>
+                    @endcan
+                    @can('view_role')
                     <li class="sidebar-dropdown">
                       <a href="{{url('role')}}">
                         <i class="far fa-gem"></i>
                         <span>Role</span>
                       </a>
-                      <div class="sidebar-submenu">
-                        <ul>
-                          <li>
-                            <a href="#">General</a>
-                          </li>
-                          <li>
-                            <a href="#">Panels</a>
-                          </li>
-                          <li>
-                            <a href="#">Tables</a>
-                          </li>
-                          <li>
-                            <a href="#">Icons</a>
-                          </li>
-                          <li>
-                            <a href="#">Forms</a>
-                          </li>
-                        </ul>
-                      </div>
                     </li>
+                    @endcan
+                    @can('view_permission')
                     <li class="sidebar-dropdown">
                       <a href="{{url('permission')}}">
                         <i class="fa fa-chart-line"></i>
                         <span>Permission</span>
                       </a>
-                      <div class="sidebar-submenu">
-                        <ul>
-                          <li>
-                            <a href="#">Pie chart</a>
-                          </li>
-                          <li>
-                            <a href="#">Line chart</a>
-                          </li>
-                          <li>
-                            <a href="#">Bar chart</a>
-                          </li>
-                          <li>
-                            <a href="#">Histogram</a>
-                          </li>
-                        </ul>
-                      </div>
                     </li>
+                    @endcan
                     <li class="sidebar-dropdown">
                       <a href="#">
                         <i class="fa fa-globe"></i>

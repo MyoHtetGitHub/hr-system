@@ -2,7 +2,9 @@
 @section('title','Employee')
 @section('content')
 <div class="m-1">
+    @can('create_employee')
     <a href="{{route('employee.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Employee</a>
+    @endcan
 </div>
 <div class="col-md-12">
     <div class="row">

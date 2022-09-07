@@ -2,7 +2,9 @@
 @section('title','Department')
 @section('content')
 <div class="m-1">
-    <a href="{{route('role.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Role</a>
+    @can('create_role')
+    <a href="{{route('role.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Role</a>           
+    @endcan
 </div>
 <div class="col-md-12">
     <div class="row">

@@ -2,7 +2,9 @@
 @section('title','Department')
 @section('content')
 <div class="m-1">
+    @can('create_department')
     <a href="{{route('department.create')}}" class="btn btn-primary btn-small "><i class="fa fa-plus-circle"></i>Add Department</a>
+    @endcan
 </div>
 <div class="col-md-12">
     <div class="row">
