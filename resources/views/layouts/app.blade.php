@@ -438,13 +438,18 @@
            });
             $('.check-custom').select2();
             });
+
+            // for logout
+            $('.btn-logout').on('click',function(e){
+              e.preventDefault();
+              $.ajax({
+                method: "POST",
+                url: "/logout",
+                })
+                .done(function( msg ) {
+                 window.location.reload();
+                });
+                  });
     </script>
-    {{-- <script>
-       $("#back-btn").on('click',function(e){
-               e.preventDefault();
-              //for previous 
-              window.history.go(-1);
-               });
-    </script> --}}
 </body>
 </html>

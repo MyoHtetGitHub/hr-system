@@ -522,3 +522,6 @@ body {
 .preview_img img {
   width: 100px;
 }
+.action-icon a {
+  padding: 0 1px 0 1px;
+}

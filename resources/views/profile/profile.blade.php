@@ -58,6 +58,7 @@
                 <p class="mb-0"><i class="fab fa-gg"></i>Department</p>
                 <p class="mb-0 text-muted">{{$employee->department ? $employee->department->title: '-'}}</p>
             </div>
+            
         </div>
         <div class="col-md-6">
             <div class="mb-3">
@@ -74,6 +75,16 @@
                         @else
                         <span class="badge badge-pill badge-dange">Leave</span>
                     @endif
+                </p>
+            </div>
+            <div class="mb-3">
+                <p class="mb-0"><i class="fab fa-gg"></i>Role</p>
+                <p class="mb-0 text-muted">
+                    @foreach ($employee->roles as  $role)
+                        <span class="badge badge-pill badge-primary">
+                            {{$role->name}}
+                        </span>
+                    @endforeach
                 </p>
             </div>
         </div>
