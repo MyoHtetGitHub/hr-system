@@ -14,3 +14,8 @@
 
 ## for image store crate symboalink
 ### php artisan storage:link
+
+### seeder
+### php artisan make:seeder CompancySettingSeeder
+- run seeder
+    -php artisan db:seed --class=CompancySettingSeeder

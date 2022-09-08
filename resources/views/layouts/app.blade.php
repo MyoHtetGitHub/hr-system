@@ -134,6 +134,14 @@
                         <span>Home</span>
                       </a>
                     </li>
+                    @can('view_compancy_setting')
+                    <li class="sidebar-dropdown">
+                      <a href="{{route('compancy-setting.show',1)}}">
+                        <i class="fa fa-tachometer-alt"></i>
+                        <span>Compancy Setting</span>
+                      </a>
+                    </li>
+                    @endcan
                     @can('view_employee')
                     <li class="sidebar-dropdown">
                       <a href="{{url('employee')}}">
@@ -310,6 +318,8 @@
      <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
      <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
      <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js),datatables.mark.js"></script>
+     {{-- biometric js --}}
+     <script src="{{ asset('vendor/larapass/js/larapass.js') }}"></script>
     <script>
         $(function(){
         @if(session('create'))
@@ -392,7 +402,8 @@
                 url: "/logout",
                 })
                 .done(function( msg ) {
-                 window.location.reload();
+                  alert("Hello world");
+                 //window.location.reload();
                 });
                   });
     </script>

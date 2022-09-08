@@ -11,3 +11,7 @@
 
 ### select2 libary for checkout multiple select
 - https://select2.org/getting-started/basic-usage
+
+### larapass 
+- https://github.com/DarkGhostHunter/Larapass 
+   --It is used for biometric authenticatio

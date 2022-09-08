@@ -528,3 +528,7 @@ body {
 .profile-img {
   width: 100px;
 }
+.daterangepicker .drp-calendar.left {
+    clear: left;
+    margin-right: 10px !important;
+}
