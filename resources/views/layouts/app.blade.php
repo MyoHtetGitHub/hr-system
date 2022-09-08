@@ -402,8 +402,7 @@
                 url: "/logout",
                 })
                 .done(function( msg ) {
-                  alert("Hello world");
-                 //window.location.reload();
+                 window.location.reload();
                 });
                   });
     </script>

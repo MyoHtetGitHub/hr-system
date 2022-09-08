@@ -532,3 +532,16 @@ body {
     clear: left;
     margin-right: 10px !important;
 }
+.profile-m{
+  margin-bottom: 20px;
+}
+#biometric-auth i {
+  font-size: 40px;
+}
+.biometric-btn{
+box-shadow: none;
+border: 1px solid #000;
+}
+.plus-icon-auth {
+  font-size: 15px;
+}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','User Profile')
 @section('content')
-<div class="card">
+<div class="card profile-m">
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
@@ -89,10 +89,53 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
-        <a href="#" class="btn btn-primary btn-block btn-logout">Logout</a>
-      </div>
+    </div>
+</div>
+<div class="card profile-m">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="biometric-auth">
+                    <button  type="submit" class="btn biometric-btn">
+                 <a href="#">
+                    <i class="fas fa-fingerprint"></i>
+                 </a>
+                </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-10">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                    <a href="#" class="btn btn-primary btn-block btn-logout">Logout</a>
+            </div>
+        </div>
     </div>
 </div>
 
+@endsection
+{{-- Biometric register --}}
+@section('script')
+<<script>
+    const register = (event) => {
+        event.preventDefault()
+        new Larapass({
+            register: 'webauthn/register',
+            registerOptions: 'webauthn/register/options'
+        }).register()
+          .then(function(res){
+            Swal.fire({
+            title: 'Success',
+            text: "Biometric Authentication is successuflly!!",
+            icon: 'success ',
+            });
+          })
+          .catch(response => console.log(response))
+    }
+
+    document.getElementById('biometric-auth').addEventListener('submit', register)
+</script>
 @endsection
