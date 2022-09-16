@@ -545,3 +545,24 @@ border: 1px solid #000;
 .plus-icon-auth {
   font-size: 15px;
 }
+.show-finger-print {
+margin-bottom: 20px;
+}
+.show-finger-print i {
+  font-size: 30px;
+  color: #980303;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 0 5px 0 5px;
+}
+.bi-plus-icon {
+  font-size: 20px !important;
+}
+.bio-acc {
+  font-size: 10px;
+  padding-top: 5px;
+}
+.login-mtop {
+  margin-top: 150px !important;
+}

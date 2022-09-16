@@ -399,12 +399,14 @@
               e.preventDefault();
               $.ajax({
                 method: "POST",
+                data:{_token: '{{csrf_token()}}'},
                 url: "/logout",
                 })
                 .done(function( msg ) {
-                 window.location.reload();
+                //  window.location.replace();
+                 console.log(msg);
                 });
-                  });
+                });
     </script>
 </body>
 </html>

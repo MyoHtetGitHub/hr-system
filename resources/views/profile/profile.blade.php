@@ -95,10 +95,23 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
+                <div class="show-finger-print">
+                    @foreach ($biometrics as $biometric)
+                    <a href="">
+                        <i class="fas fa-fingerprint">
+                            <span class="bio-acc">{{$loop->iteration}}</p>
+                        </i>
+                    </a>
+                    @endforeach
+                    
+                </div>
+                <h5>Biometric Auth</h5>
                 <form id="biometric-auth">
                     <button  type="submit" class="btn biometric-btn">
                  <a href="#">
-                    <i class="fas fa-fingerprint"></i>
+                    <i class="fas fa-fingerprint">
+                        <i class="fas fa-plus bi-plus-icon"></i>
+                    </i>
                  </a>
                 </button>
                 </form>
@@ -108,11 +121,14 @@
 </div>
 <div class="card mb-10">
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                    <a href="#" class="btn btn-primary btn-block btn-logout">Logout</a>
-            </div>
-        </div>
+        <a class="#" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+          Logout
+     </a>
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+         @csrf
+     </form>
     </div>
 </div>
 
@@ -131,7 +147,10 @@
             title: 'Success',
             text: "Biometric Authentication is successuflly!!",
             icon: 'success ',
-            });
+            }),setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+            ;
           })
           .catch(response => console.log(response))
     }

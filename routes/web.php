@@ -31,7 +31,10 @@ Route::post('webauthn/login/options', [WebAuthnLoginController::class, 'options'
 Route::post('webauthn/login', [WebAuthnLoginController::class, 'login'])
      ->name('webauthn.login');
 
+
+
 Auth::routes(['register' => false]);
+Route::get('/login-option','Auth\LoginController@loginOption')->name('login-option');
 Route::middleware('auth')->group(function () {
     Route::get('/', 'PageController@home');
 

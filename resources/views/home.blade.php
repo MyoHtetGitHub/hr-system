@@ -49,9 +49,9 @@
          
             </div>
         </div>
-         <div class="col-md-12">
+         {{-- <div class="col-md-12">
             <a href="#" class="btn btn-primary btn-block btn-logout">Logout</a>
-          </div>
+          </div> --}}
     </div>
     </div>
 </div>
