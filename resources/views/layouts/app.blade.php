@@ -405,6 +405,28 @@
         $('.option-hide').on('click', function() {
             alert('Hello');
         });
+        $(document).on('click', '.biometric-delete-btn', function(event) {
+            event.preventDefault();
+            var id = $(this).data('id');
+            swal({
+                    text: "Are you sure?",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                                method: "DELETE",
+                                url: `/profile/biometric-data-delete/${id}`,
+                            })
+                            .done(function(res) {
+                                console.log(res);
+                                // table.ajax.reload();
+                                window.location.reload();
+                            });
+                    }
+                });
+        });
     </script>
 </body>
 

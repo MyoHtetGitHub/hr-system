@@ -576,3 +576,13 @@ body {
 .biometric-login-btn {
     font-size: 40px !important;
 }
+.fa-fingerprint {
+    position: relative;
+}
+.fa-fingerprint .fa-trash-alt {
+    font-size: 15px;
+    border: none;
+    position: absolute;
+    top: -17px;
+    left: 39px;
+}

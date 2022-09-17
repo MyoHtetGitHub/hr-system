@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('employee', 'EmployeeController');
     Route::get('/employee/Datatables/getDatatableServerSide','EmployeeController@getDatatableServerSide');
     Route::get('/profile','ProfileController@profile')->name('profile.profile');
+    Route::delete('profile/biometric-data-delete/{id}','ProfileController@biometricDestroy');
 
     // for department route
     Route::resource('/department', 'DepartmentController');
