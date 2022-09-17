@@ -37,5 +37,7 @@
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
     ></script>
+    @yield('script')
+    <script src="{{ asset('vendor/larapass/js/larapass.js') }}"></script>
 </body>
 </html>

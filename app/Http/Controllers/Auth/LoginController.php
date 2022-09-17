@@ -41,6 +41,9 @@ class LoginController extends Controller
     }
     
     public function loginOption(Request $request){
+        $request->validate([
+            'email'=>'required',
+        ]);
        return view('auth.login_option');
     }
 }
