@@ -49,7 +49,6 @@
                                 value="{{ $setting->break_end_time }}">
                         </div>
                     </div>
-
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="col-md-12 m-4">

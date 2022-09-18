@@ -25,17 +25,18 @@ class UpdateEmployee extends FormRequest
     {
         $id= $this->route('employee');
         return [
-            // 'employee_id' =>'required|unique:users,employee_id,'.$id,
-            // 'name' =>'required',
-            // 'phone' =>'required|min:9|max:11|unique:users,phone,'.$id,
+            'employee_id' =>'required|unique:users,employee_id,'.$id,
+            'name' =>'required',
+            'phone' =>'required|min:9|max:11|unique:users,phone,'.$id,
             // 'email' =>'required|email|unique:users,email,c'.$id,
-            // 'nrc_number'=>'required',
-            // 'gender'=>'required',
-            // 'birthday'=>'required',
-            // 'address'=>'required',
-            // 'department_id'=>'required',
-            // 'date_of_join'=>'required',
-            // 'is_present'=>'required ',
+            'nrc_number'=>'required',
+            'gender'=>'required',
+            'birthday'=>'required',
+            'address'=>'required',
+            'department_id'=>'required',
+            'date_of_join'=>'required',
+            'is_present'=>'required ',
+            'pin_code'=>'min:6|max:6',
             // 'password'=>'required'
         ];
     }

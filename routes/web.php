@@ -31,8 +31,6 @@ Route::post('webauthn/login/options', [WebAuthnLoginController::class, 'options'
 Route::post('webauthn/login', [WebAuthnLoginController::class, 'login'])
      ->name('webauthn.login');
 
-
-
 Auth::routes(['register' => false]);
 Route::get('/login-option','Auth\LoginController@loginOption')->name('login-option');
 Route::middleware('auth')->group(function () {
@@ -58,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     //for compancy setting
     Route::resource('compancy-setting', 'CompancySettingController')->only(['show','edit','update']);
-
-
 });
+
+    //for check-in check-out 
+    Route::get('checkin-checkout','CheckInCheckOutController@checkInCheckOut');
